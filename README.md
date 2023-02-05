@@ -5,7 +5,7 @@ Comandos para iniciar o Kafka localmente:
 2- ./kafka-server-start.sh ../config/server.properties 
 
 Criando um tópico:
-./kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic NEW_TOPIC_HERE
+./kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic ECOMMERCE_NEW_ORDER <- (new topic here)
 
 Listando os tópicos:
 ./kafka-topics.sh --list --bootstrap-server localhost:9092
