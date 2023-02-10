@@ -1,19 +1,21 @@
-package br.com.alura;
+package br.com.ecommerce;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.math.BigDecimal;
 
 @RequiredArgsConstructor
 @Getter
 @Setter
-@ToString
 public class Order {
 
     private final String userId;
     private final String orderId;
     private final BigDecimal amount;
+
+    public String getEmail(){
+        return "elileite9@gmail.com";
+    }
 }
