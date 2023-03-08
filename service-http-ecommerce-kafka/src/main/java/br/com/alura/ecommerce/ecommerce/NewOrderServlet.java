@@ -1,4 +1,4 @@
-package br.com.alura.ecommerce;
+package br.com.alura.ecommerce.ecommerce;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
