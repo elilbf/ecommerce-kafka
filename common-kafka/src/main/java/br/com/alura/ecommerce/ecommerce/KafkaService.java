@@ -26,7 +26,7 @@ public class KafkaService<T> implements Closeable {
         consumer.subscribe(topic);
     }
 
-    private KafkaService(ConsumerFunction parse, String groupId, Class<T> type, Map<String, String> extraProperties) {
+    private KafkaService(ConsumerFunction<T> parse, String groupId, Class<T> type, Map<String, String> extraProperties) {
         this.parse = parse;
         this.consumer = new KafkaConsumer<>(getProperties(type, groupId, extraProperties));
     }
