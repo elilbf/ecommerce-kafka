@@ -1,6 +1,5 @@
 package br.com.ecommerce;
 
-import br.com.alura.ecommerce.ecommerce.CorrelationId;
 import br.com.alura.ecommerce.ecommerce.KafkaDispatcher;
 import br.com.alura.ecommerce.ecommerce.KafkaService;
 import br.com.alura.ecommerce.ecommerce.Message;
@@ -31,12 +30,11 @@ public class BatchSendMessageService {
         }
     }
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, ExecutionException, InterruptedException {
         var batchService = new BatchSendMessageService();
         try (var service = new KafkaService<>(BatchSendMessageService.class.getSimpleName(),
                 "ECOMMERCE_SEND_MESSAGE_TO_ALL_USERS",
                 batchService::parse,
-                String.class,
                 new HashMap<>())) {
             service.run();
         }
@@ -44,16 +42,17 @@ public class BatchSendMessageService {
 
     private final KafkaDispatcher<User> userDispatcher = new KafkaDispatcher<>();
 
-    private void parse(ConsumerRecord<String, Message<String>> record) throws SQLException, ExecutionException, InterruptedException {
+    private void parse(ConsumerRecord<String, Message<String>> record) throws SQLException {
         System.out.println("----------------------------------------");
         System.out.println("Processing new batch");
         var message = record.value();
         System.out.println("Topic: " + message.getPayload());
 
         for (User user : getAllUsers()) {
-            userDispatcher.send(message.getPayload(), user.getUuid(),
+            userDispatcher.sendAsync(message.getPayload(), user.getUuid(),
                     message.getId().continueWith(BatchSendMessageService.class.getSimpleName()),
                     user);
+            System.out.println("maybe sended to " + user);
         }
     }
 
