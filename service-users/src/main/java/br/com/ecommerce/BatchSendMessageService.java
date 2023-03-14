@@ -18,7 +18,7 @@ public class BatchSendMessageService {
     private final Connection connection;
 
     BatchSendMessageService() throws SQLException {
-        String url = "jdbc:sqlite:target/users_database.db";
+        String url = "jdbc:sqlite:service-users/target/users_database.db";
         connection = DriverManager.getConnection(url);
         try {
             connection.createStatement().execute("CREATE TABLE Users (" +
