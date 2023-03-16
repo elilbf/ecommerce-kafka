@@ -1,4 +1,4 @@
-package br.com.alura.ecommerce.ecommerce;
+package br.com.alura.ecommerce;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

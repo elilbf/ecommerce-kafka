@@ -1,8 +1,8 @@
 package br.com.ecommerce;
 
-import br.com.alura.ecommerce.ecommerce.KafkaDispatcher;
-import br.com.alura.ecommerce.ecommerce.KafkaService;
-import br.com.alura.ecommerce.ecommerce.Message;
+import br.com.alura.ecommerce.dispatcher.KafkaDispatcher;
+import br.com.alura.ecommerce.consumer.KafkaService;
+import br.com.alura.ecommerce.Message;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 
 import java.sql.Connection;
@@ -18,7 +18,7 @@ public class BatchSendMessageService {
     private final Connection connection;
 
     BatchSendMessageService() throws SQLException {
-        String url = "jdbc:sqlite:service-users/target/users_database.db";
+        String url = "jdbc:sqlite:target/users_database.db";
         connection = DriverManager.getConnection(url);
         try {
             connection.createStatement().execute("CREATE TABLE Users (" +
